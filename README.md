@@ -13,5 +13,13 @@ Set up procedure for PCB_111000_V3 is the same as that for V2 however
 there are slight differences in the programs.
 8_UNO_AVR_Programmer_V3 is replaced by UNO_PCB_111000_V3_programmer
 5_Project_pcb_168_V2.30_Arduino_V2 is replaced by mini_OS programmer
-No changes are expected for the mini-OS, so only the hex files are copied
-into this repository.
+
+The original mini-OS generated the user prompt p/r  p/r  p/r.......
+An special version was developed that enabled user projects to reset the
+mini-OS in the event of a crash.  This version generates the user prompt
+p/g  p/g  p/r......... It will ber used in PCB_111000_V3.
+
+No additional changes are expected for the mini-OS, so only the hex files 
+are copied into this repository.
+
+
