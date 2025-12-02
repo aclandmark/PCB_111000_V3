@@ -4,7 +4,7 @@ to enable the Atmega devices to communicate with a PC.
 This replaces the discreet components used in versions 1 and 2.  
 It also makes the PCB cheeper and easier to assemble.
 
-There is one other change: The device that hosts user projects
+There is one other change: The device that hosts user projects,
 an Atmega 168 has been replaced with an Atmega 328.
 User projects should not be affected but should be compiled for the
 Arduino UNO pcb rather than for the Arduino Nano with an Atmega 168.
