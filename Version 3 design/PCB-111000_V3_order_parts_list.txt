@@ -41,4 +41,7 @@ SM NO push button 		1 OFF		RE 51-0709 	OK
 Push button switch		3 OFF		RE 51-0711	OK
 Solder wick							Ordered from RE
 
-
+Extras
+6 way header x 3 Radio Spares 681-2994 
+Bread board jumper wires		RS Stock No.:	505-3374	505-3403 
+2 Watt wired resistor 707-8823 
