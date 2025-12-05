@@ -2,38 +2,42 @@ Partslist
 
 Capacitors
 
-18pF (C7, C8)				2 OFF			RS 648-0935		OK	Ordered
-10nF (C9, C15, C16, C17)  	4 OFF			RS 199-2068		OK	Ordered
-100nF (C1, C2, C6) 			3 OFF			RS 669-8417		OK	Ordered
-4.7uF (C3, C5)				2 OFF			RS 723-5076		OK	Ordered
+18pF (C7, C8)				2 OFF			RS 648-0935		OK	Ordered			RECEIVED
+10nF (C9, C15, C16, C17)  		4 OFF			RS 199-2068		OK	Ordered			RECEIVED
+100nF (C1, C2, C6) 			3 OFF			RS 669-8417		OK	Ordered			RECEIVED
+4.7uF (C3, C5)				2 OFF			RS 723-5076		OK	Ordered			RECEIVED
 
 C4, C10 to 14 missing
 
 Resistors
 
-220R (R27, R28)				2 OFF			RS 812-1849		OK	Ordered
-330R (R20 to 26)			7 OFF			RS 257-3195		OK	Ordered
-560R (R15, R16)				2 OFF			RS 679-2225		OK	Ordered
-3K9	(R5, R17, R18)			3 OFF			RS 242-6578		OK	Ordered
-10K	 (R2, R3, R8, R14)		4 OFF			RS 679-1765		OK	Ordered
-22K	(R7, R9)				2 OFF			RS 223-2439		OK	Ordered
+220R (R27, R28)				2 OFF			RS 812-1849		OK	Ordered			RECEDIVED
+330R (R20 to 26)			7 OFF			RS 197-8302		OK	Ordered			RECEIVED
+560R (R15, R16)				2 OFF			RS 679-2225		OK	Ordered			RECEIVED
+3K9	(R5, R17, R18)			3 OFF			RS 242-6578		OK	Ordered			RECEIVED
+10K	 (R2, R3, R8, R14)		4 OFF			RS 679-1765		OK	Ordered			AWAITING
+22K	(R7, R9)			2 OFF			RS 223-2439		OK	Ordered			RECEIVED
 
 R1, R4, R6, R11, R12, R13 missing
 
 
-CC_DUAL_LED				1 OFF		RS171-2136	OK	Ordered
-Watch Crystal 			1 OFF		RS 171-0553	OK	Ordered
-MOSFET ZVN3306FTA		1 OFF		RS 275-945	OK	Ordered
+CC_DUAL_LED			1 OFF		RS 171-2136	OK	Ordered			RECEIVED
+Watch Crystal 			1 OFF		RS 171-0553	OK	Ordered			RECEIVED
+MOSFET ZVN3306FTA		1 OFF		RS 275-945	OK	Ordered			RECEIVED
 
 
 Extras
-6 way header x 3 Radio Spares 681-2994 
-Bread board jumper wires		RS Stock No.:	505-3374	505-3403 
-2 Watt wired resistor 707-8823 
+6 way header x 3 Radio Spares 				681-2994				RECEIVED 
+Bread board jumper wires		RS Stock No.:	505-3374	505-3403 		RECEIVED
+2 Watt wired resistor 					707-8849				RECEIVED 				
 
 
 
 Others
+4_DIGIT_7SEGMENT_DISPLAY		CA56-12SYKWA	2 OFF	872-1954	Ordered		RECEIVED
+
+
+
 
 4_DIGIT_7SEGMENT_DISPLAY	CC56-21SURKWA	RS 165-4368  Pack of ten NOT AVAZILABLE
                                                 
@@ -51,5 +55,16 @@ DPDT switch				1 OFF		RE  78-0560	OK
 SM NO push button 		1 OFF		RE 51-0709 	OK
 Push button switch		3 OFF		RE 51-0711	OK
 Solder wick							Ordered from RE
+
+
+      DHL eCommerce UK Swindon
+      Unit 1 Ignition Park
+      Dorcan
+      Swindon
+      SN3 5HS
+Sender s reference: 1259602840 
+
+Your shipment 31542913837470 (1 parcel expected) is delivered
+Sender s reference: 1259602840
 
 
