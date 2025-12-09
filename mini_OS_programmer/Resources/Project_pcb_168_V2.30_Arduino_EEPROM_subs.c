@@ -71,7 +71,7 @@ EEP_pointer = text_start;												//Start saving user strings/data at address
 Text__Press_W_or_R;
 while(1){sendString("?  ");	
 if (isCharavailable(255)) break;} 										//User prompt  
-op_code_1 = receiveChar();								
+op_code_1 = receiveChar();							
 
 
 
@@ -94,7 +94,8 @@ break;
 case 'W':
 case 'w':
 
-sendString("\r\nSend text file.");
+sendString("\r\nSend Text_files_Hello_world.txt ");
+//sendString("\r\nSend Text_file ");
 
 do 																		//Remain in do-loop untill text all downloaded
 	{DL_status = (Download_text(&EEP_pointer,\
