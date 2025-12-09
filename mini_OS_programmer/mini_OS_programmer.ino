@@ -231,8 +231,8 @@ default: break;}
 if ((op_code == 'P') || (op_code == 'p')) break;}            //Enter target programming mode
 
 Initialise_variables_for_programming_flash;
-Text_Send_HexF;
-
+//Text_Send_HexF;
+sendString("\r\nSend mini_OS-hex   \r\n");
 while ((keypress = waitforkeypress()) != ':')                 //Ignore characters before the first ':'
 {if (keypress == 'x'){wdt_enable(WDTO_60MS); while(1);}}      //X pressed to escape
 UCSR0B |= (1<<RXCIE0); sei();                                 //Enable UART interrupt
