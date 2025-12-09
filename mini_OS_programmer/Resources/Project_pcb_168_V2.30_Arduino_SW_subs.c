@@ -133,7 +133,7 @@ newline();sendString ("BR 2k4 then AK");newline();						//Text_Baud_Rate_L;
 
 USART_init(1,160);
 waitforkeypress();
-sendString ("Text file?");newline();									//Text_message_file;
+sendString("\r\nSend Text_files_on-chip_strings.txt ");newline();									//Text_message_file;
 
 if ((text = waitforkeypress()) == '"');
 else
