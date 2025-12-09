@@ -50,19 +50,25 @@ The Atmega 168 can now be soldered onto the PCB-111000_V2 pcb
 
 
 #include "UNO_AVR_programmer.h"
-#define Version "\r\nUNO_programmer_V3.0\r\n\
-Used to initialise the PCB-111000_V2 Atmega168.\r\n" 
+ 
 
 int main (void){ 
-
+char keypress;
 setup_328_HW;                                                     //see "Resources\ATMEGA_Programmer.h"
 
 Reset_L;                                                          //Put target in reset state to dissable UART
 
 while(1){
-do{sendString("s  ");} 
+do{sendString("s/x  ");} 
 while((isCharavailable(255) == 0));                               //User prompt 
-if(receiveChar() == 's')break;}
+//if(receiveChar() == 's')break;
+/////else {Exit_programming_mode;}
+keypress = receiveChar();
+if (keypress == 's')break;
+if (keypress == 'x'){
+  sendString("\r\nUNO in comm port only mode\r\n");
+  Exit_programming_mode;}
+}
 
 Atmel_powerup_and_target_detect;                                  //Leave target in programming mode                              
 
@@ -99,14 +105,14 @@ case 'x': SW_reset; break;
 default: break;} 
 
 if ((op_code == 'p')||(op_code == 'P')) break;} 
-sendString("\r\nSend hex file (or x to escape).\r\n");
+sendString("\r\nSend mini_OS_programmer.hex (or x to escape).\r\n");
 
 Program_Flash_Hex();
 Verify_Flash_Hex();
 
 
-sendString (Version);
-newline();
+//sendString (Version);
+//newline();
 
 
 if ((Read_write_mem('O', 0x3FF, 0) > 0x0F)\
@@ -115,13 +121,15 @@ if ((Read_write_mem('O', 0x3FF, 0) > 0x0F)\
 
   sendString("User device already calibrated. Result:  ");
 sendHex  (10, Read_write_mem('O', 0x3FE, 0));
-sendString("\r\n Press AK to repeat or reset UNO\r\n\r\n");
-  waitforkeypress();}
+sendString("\r\nPress X to dissable UNO comm port or AOK to repeat or reset UNO\r\n\r\n");
+  if (waitforkeypress() == 'X'){Exit_programming_mode;}}
 
+//sendString("\r\n Press AK to repeat or reset UNO\r\n\r\n");
+//  waitforkeypress();}
 
 sendString("To calibrate set 57600 Baud and then press AK \r\n\
 UNO puts Square wave with 65.536mS period on PB5\r\n\
-else reset UNO\r\n\r\n");
+else reset UNO");
 waitforkeypress();
 set_cal_clock();
 
