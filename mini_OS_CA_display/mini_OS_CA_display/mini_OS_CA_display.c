@@ -3,7 +3,7 @@
 COMPILE using OPTIMIZE level (-01) only (was -Os in winAVR)
 
 The ATMEGA 328 is programmed with the mini-OS in the application partition 
-and the bootloader in the boot section using "5_Project_pcb_168_V2.30_Arduino_V2"
+and the bootloader in the boot section using "mini_OS programmer"
 
 *EEPROM reservations
 0x3FF	user cal if set
@@ -34,12 +34,12 @@ Zero to 0x3F5: For user strings and data
 
 
 
-char *SW_Version = "System files: Mini-OS_V29_CA plus pcb_Bootloader_V4_31_CA \r\n";
+char *SW_Version = "System files: "mini_OS_CA_display" "plus pcb_Bootloader_CA" \r\n";
 
 
 char *SW_info = "SW information:\
-Use Project_pcb_168_V2.30_Arduino_V2 to update system files\r\n\
-See Nano projects directory for user work.\r\n";
+Bootloader contains code needed to reset the mini_OS\r\n\
+in the event of a crash.\r\n";
 
 # include "../../Mini-OS_Resources/Mini-OS_Main.c"
 
