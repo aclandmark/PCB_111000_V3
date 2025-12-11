@@ -3,7 +3,10 @@
 COMPILE using OPTIMIZE level (-01) only (was -Os in winAVR)
 
 The ATMEGA 328 is programmed with the mini-OS in the application partition 
-and the bootloader in the boot section using "5_Project_pcb_168_V2.30_Arduino_V2"
+and the bootloader in the boot section using "mini_OS programmer"
+
+Note: the term bootloader refers to a pcb bootloader not an IC bootloader
+		It should more strictly be called a programmer
 
 *EEPROM reservations
 0x3FF	user cal if set
