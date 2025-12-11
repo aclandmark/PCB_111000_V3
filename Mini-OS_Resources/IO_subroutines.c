@@ -72,6 +72,9 @@ void Disp_Long(unsigned long num, signed char exponent){
 unsigned char i, display_mode, result[12]; 
 signed char   zero_counter, digit_counter, string_length, string_shift;
 
+zero_counter = 0;
+digit_counter = 0;
+
 for(int m = 0; m <= 7; m++){display_buf[m] = '\0';}
 for(int m = 0; m <= 9; m++){result[m] = '\0';}
 
