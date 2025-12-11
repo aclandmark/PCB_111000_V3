@@ -37,12 +37,12 @@ Zero to 0x3F5: For user strings and data
 
 
 	
-	char *SW_Version = "System files: Mini-OS_V30_CC plus pcb_Bootloader_V4_32_CC \r\n";
+	char *SW_Version = "System files: mini_OS_CC_display  plus pcb_Bootloader_CC \r\n \r\n";
 	
 	
 	char *SW_info = "SW information:\
-	Use Project_pcb_168_V2.30_Arduino_V2 to update system files\r\n\
-	See Nano projects directory for user work.\r\n";
+	Bootloader contains code needed to reset the mini_OS\r\n\
+	in the event of a crash.\r\n";
 
 # include "../../Mini-OS_Resources/Mini-OS_Main.c"
 
