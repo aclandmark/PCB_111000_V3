@@ -34,7 +34,7 @@ Zero to 0x3F5: For user strings and data
 
 
 
-char *SW_Version = "System files: "mini_OS_CA_display" "plus pcb_Bootloader_CA" \r\n";
+char *SW_Version = "System files: mini_OS_CA_display plus pcb_Bootloader_CA \r\n";
 
 
 char *SW_info = "SW information:\
