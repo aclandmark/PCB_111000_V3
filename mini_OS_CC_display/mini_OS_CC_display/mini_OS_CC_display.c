@@ -12,7 +12,7 @@ Note: the term bootloader refers to a pcb bootloader not an IC bootloader
 0x3FF	user cal if set
 0x3FE	user cal if set
 0x3FD	Default cal supplied by Atmel
-0x3FC	If 'x' pressed at p/r prompt 0x3FC is set to 1 for diagnostic mode.
+0x3FC	If 'x' pressed at p/g prompt 0x3FC is set to 1 for diagnostic mode.
 		if 'r' is pressed, normal mode runs
 0x3FB	Controls brightness
 0x3FA	No longer used
