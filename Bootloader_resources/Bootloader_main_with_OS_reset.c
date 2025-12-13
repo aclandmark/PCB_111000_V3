@@ -90,10 +90,10 @@ int main (void){
 					if (dummy_byte == 'x') {eeprom_write_byte((uint8_t*)0x3FC, 0x1);}
 
 				sendString ("Sw!\r\n");wdt_enable(WDTO_60MS); while(1);}}
-				sendString ("\r\nSend file (ATMEGA168):\r\n");
+				sendString ("\r\nSend file (ATMEGA328:\r\n");
 				Start_LED_Activity;
 
-				PageSZ = 0x40; PAmask = 0x1FC0; FlashSZ=0x2000;
+				PageSZ = 0x40; PAmask = 0x3FC0; FlashSZ=0x4000;						//Valuers for Atmega 328
 
 				counter = 1;
 
@@ -115,10 +115,10 @@ int main (void){
 
 				Program_Flash();
 				
-				Atmel_config(write_extended_fuse_bits_h,0xFF);
-				Atmel_config(write_fuse_bits_H_h,0xD5);										//BOD 2.9V
-				Atmel_config(write_fuse_bits_h,0xC2);										//0mS SUT 8MHz RC clock
-				Atmel_config(write_lock_bits_h,0xEB);
+				Atmel_config(write_extended_fuse_bits_h,0xFD);								//BOD 2.7V
+				Atmel_config(write_fuse_bits_H_h,0xD7);										//4 pages which is the min (non crfitical setting)
+				Atmel_config(write_fuse_bits_h,0xC2);										//SUT setting 00	BOD enabled (min extra styart up[ time)
+				Atmel_config(write_lock_bits_h,0xFF);										//No memory lock featrures neeeded
 				
 				Halt_LED_Activity;
 				Verify_Flash();
