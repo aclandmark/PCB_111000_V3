@@ -9,7 +9,7 @@ and the bootloader in the boot section using "mini_OS programmer"
 0x3FF	user cal if set
 0x3FE	user cal if set
 0x3FD	Default cal supplied by Atmel
-0x3FC	If 'x' pressed at p/r prompt 0x3FC is set to 1 for diagnostic mode.
+0x3FC	If 'x' pressed at p/g prompt 0x3FC is set to 1 for diagnostic mode.
 		if 'r' is pressed, normal mode runs
 0x3FB	Controls brightness
 0x3FA	No longer used
@@ -22,7 +22,7 @@ Zero to 0x3F5: For user strings and data
 
 # include "mini_OS_CA_header.h"
 # include "../../Mini-OS_Resources/Mini-OS_header_file.h"
-# include "I2C_V29_0_CA_display_subroutines.c"
+# include "mini-OS_CA_display_subroutines.c"
 
 # include "../../Mini-OS_Resources/IO_subroutines.c"
 # include "../../Mini-OS_Resources/Arithmetic_subroutines.c"
