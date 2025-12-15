@@ -20,6 +20,8 @@ Resistors
 
 R1, R4, R6, R11, R12, R13 missing
 
+R10 100R not ordered	Used 220R instead
+
 
 CC_DUAL_LED			1 OFF		RS 171-2136	OK	Ordered			RECEIVED
 Watch Crystal 			1 OFF		RS 171-0553	OK	Ordered			RECEIVED
