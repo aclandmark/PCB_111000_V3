@@ -108,7 +108,8 @@ if ((eeprom_read_byte((uint8_t*)0x1FE) > 0x0F)\
 /*****************************************************************************/
 #define waiting_for_I2C_master \
 TWCR = (1 << TWEA) | (1 << TWEN);\
-while (!(TWCR & (1 << TWINT)));\
+{int m = 0; while((!(TWCR & (1 << TWINT))) && (m++ < 5000))wdr();\
+    if (m >= 4999){sei(); while((!(TWCR & (1 << TWINT))));}}\
 TWDR;
 
 #define clear_I2C_interrupt \
