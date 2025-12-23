@@ -4,6 +4,7 @@
 
 char watch_dog_reset = 0;
 char str_counter;
+unsigned char SREG_BKP;
 
 #define switch_1_down  ((PIND & 0x04)^0x04)
 #define switch_2_down  ((PINB & 0x40)^0x40)
@@ -33,7 +34,10 @@ if (receive_byte_with_Nack()==1)\
 {TWCR = (1 << TWINT);\
 wdt_enable(WDTO_30MS);\
 I2C_Tx_display();}\
-else TWCR = (1 << TWINT);
+else TWCR = (1 << TWINT);\
+\
+Thirty_two_ms_WDT_with_interrupt;
+
 
 
 /*****************************************************************************/
@@ -109,6 +113,39 @@ TWDR;
 
 #define clear_I2C_interrupt \
 TWCR = (1 << TWINT);
+
+
+#define switch_3_down  ((PIND & 0x80)^0x80)
+#define switch_3_up   (PIND & 0x80)
+#define switch_1_down ((PIND & 0x04)^0x04)
+#define switch_1_up   (PIND & 0x04)
+#define switch_2_down ((PINB & 0x40)^0x40)
+#define switch_2_up   (PINB & 0x40)
+
+
+
+#define Thirty_two_ms_WDT_with_interrupt \
+wdr();\
+SREG_BKP = SREG;\
+cli();\
+WDTCSR |= (1 <<WDCE) | (1<< WDE);\
+WDTCSR = (1<< WDE) | (1 << WDIE) | (1 << WDP0);\
+MCUSR=0;\
+SREG = SREG_BKP;
+
+
+#define Reset_Atmega328 \
+PORTC |= (1 << PC3);\
+DDRC |= (1 << PC3);\
+_delay_ms(1);\
+PORTC &= (~((1 << PC3)));\
+_delay_ms(1);\
+PORTC |= (1 << PC3);
+
+#define Reset_I2C \
+DDRB |= (1 << DDB4);\
+PORTB &= (~(1 << PORTB4));
+
 
 
 
