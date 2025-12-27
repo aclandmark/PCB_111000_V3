@@ -115,6 +115,14 @@ TWCR = (1 << TWINT);
 
 
 
+/********Original code now replaced with special code in both cases*************/
+#define waiting_for_I2C_master_original \
+TWCR = (1 << TWEA) | (1 << TWEN);\
+while (!(TWCR & (1 << TWINT)));\
+TWDR;
+
+
+
 /********************Special code for mini-OS reset**************************/
 #define waiting_for_I2C_master \
 TWCR = (1 << TWEA) | (1 << TWEN);\
@@ -142,6 +150,7 @@ _delay_ms(1);\
 PORTC &= (~((1 << PC3)));\
 _delay_ms(1);\
 PORTC |= (1 << PC3);
+
 
 #define Reset_I2C \
 DDRB |= (1 << DDB4);\
