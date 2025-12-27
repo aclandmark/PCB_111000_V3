@@ -4,11 +4,17 @@
 
 char watch_dog_reset = 0;
 char str_counter;
-unsigned char SREG_BKP;
+unsigned char SREG_BKP;					//Extra for mini-IO reset
 
 #define switch_1_down  ((PIND & 0x04)^0x04)
 #define switch_2_down  ((PINB & 0x40)^0x40)
 #define switch_3_down  ((PIND & 0x80)^0x80)
+
+#define switch_1_up   (PIND & 0x04)
+#define switch_2_up   (PINB & 0x40)
+#define switch_3_up   (PIND & 0x80)
+
+
 
 /*****************************************************************************/
 #define setup_HW \
@@ -18,7 +24,7 @@ ADMUX |= (1 << REFS0);\
 set_up_switched_inputs;\
 Set_LED_ports;\
 Unused_I_O;\
-eeprom_write_byte((uint8_t*)(0x1FD),OSCCAL);\
+eeprom_write_byte((uint8_t*)(0x3FD),OSCCAL);\
 while (!(PIND & (1 << PD1)));\
 Timer_T0_10mS_delay_x_m(5);\
 OSC_CAL;\
@@ -34,9 +40,7 @@ if (receive_byte_with_Nack()==1)\
 {TWCR = (1 << TWINT);\
 wdt_enable(WDTO_30MS);\
 I2C_Tx_display();}\
-else TWCR = (1 << TWINT);\
-\
-Thirty_two_ms_WDT_with_interrupt;
+else TWCR = (1 << TWINT);
 
 
 
@@ -54,7 +58,7 @@ WDTCSR = 0;
 
 
 
-/*****************************************************************************/
+/******************Slave I2C address*****************************************/
 #define set_up_I2C \
 TWAR = 0x02;
 
@@ -99,32 +103,28 @@ else {PORTB |= (1 << PB1);}
 
 /*****************************************************************************/
 #define OSC_CAL \
-if ((eeprom_read_byte((uint8_t*)0x1FE) > 0x0F)\
-&&  (eeprom_read_byte((uint8_t*)0x1FE) < 0xF0) && (eeprom_read_byte((uint8_t*)0x1FE)\
-== eeprom_read_byte((uint8_t*)0x1FF))) {OSCCAL = eeprom_read_byte((uint8_t*)0x1FE);}
+if ((eeprom_read_byte((uint8_t*)0x3FE) > 0x0F)\
+&&  (eeprom_read_byte((uint8_t*)0x3FE) < 0xF0) && (eeprom_read_byte((uint8_t*)0x3FE)\
+== eeprom_read_byte((uint8_t*)0x3FF))) {OSCCAL = eeprom_read_byte((uint8_t*)0x3FE);}
 
 
 
 /*****************************************************************************/
+#define clear_I2C_interrupt \
+TWCR = (1 << TWINT);
+
+
+
+/********************Special code for mini-OS reset**************************/
 #define waiting_for_I2C_master \
 TWCR = (1 << TWEA) | (1 << TWEN);\
 {int m = 0; while((!(TWCR & (1 << TWINT))) && (m++ < 5000))wdr();\
     if (m >= 4999){sei(); while((!(TWCR & (1 << TWINT))));}}\
 TWDR;
 
-#define clear_I2C_interrupt \
-TWCR = (1 << TWINT);
 
 
-#define switch_3_down  ((PIND & 0x80)^0x80)
-#define switch_3_up   (PIND & 0x80)
-#define switch_1_down ((PIND & 0x04)^0x04)
-#define switch_1_up   (PIND & 0x04)
-#define switch_2_down ((PINB & 0x40)^0x40)
-#define switch_2_up   (PINB & 0x40)
-
-
-
+/********************Extra code for mini-OS reset**************************/
 #define Thirty_two_ms_WDT_with_interrupt \
 wdr();\
 SREG_BKP = SREG;\
@@ -147,8 +147,13 @@ PORTC |= (1 << PC3);
 DDRB |= (1 << DDB4);\
 PORTB &= (~(1 << PORTB4));
 
+/*****Include this line afer setup_HW plus ISR if mini-OS reset required***************/
+//Thirty_two_ms_WDT_with_interrupt;
 
-
+//ISR (WDT_vect){
+//Reset_Atmega328;		//may need some development
+//Reset_I2C;}
+  
 
 /*****************************************************************************/
 #include "Resources_nano_projects/Subroutines/HW_timers.c"
