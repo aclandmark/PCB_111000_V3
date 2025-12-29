@@ -59,7 +59,7 @@ setup_HW_Arduino_IO;                             //"setup_HW"initially saves def
 OSCCAL_DV = eeprom_read_byte((uint8_t*)0x3FD);         //then checks for "user-cal" and copies it to OSCCAL if present
 OSCCAL_WV = OSCCAL;                                    //Save actual cal value: could be "user-cal" or the default OSCCAL
 
-Serial.write("\r\nATMEGA 168 manual \
+Serial.write("\r\nUser device manual \
 calibration\r\n\
 Cal factor working value   \t");                       //Print the actual (working) value of OSCCAL
 Hex_to_PC_A(OSCCAL_WV, Num_string, '\r' );
