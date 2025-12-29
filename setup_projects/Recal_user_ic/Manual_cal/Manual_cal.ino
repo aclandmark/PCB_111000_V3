@@ -56,7 +56,7 @@ int main (void){
 long error;
 long percentage_error;
 setup_HW_Arduino_IO;                             //"setup_HW"initially saves default OSCCAL in 0x1FD and
-OSCCAL_DV = eeprom_read_byte((uint8_t*)0x1FD);         //then checks for "user-cal" and copies it to OSCCAL if present
+OSCCAL_DV = eeprom_read_byte((uint8_t*)0x3FD);         //then checks for "user-cal" and copies it to OSCCAL if present
 OSCCAL_WV = OSCCAL;                                    //Save actual cal value: could be "user-cal" or the default OSCCAL
 
 Serial.write("\r\nATMEGA 168 manual \
@@ -118,12 +118,12 @@ New_UC_value = Hex_from_KBD();Serial.write(" y?");}}
 
 if(New_UC_value == 0xFF){
   if ((error = compute_single_error(OSCCAL_DV)) > 1000)
-  {eeprom_write_byte((uint8_t*)0x1FE, OSCCAL_WV);
-eeprom_write_byte((uint8_t*)0x1FF, OSCCAL_WV);
+  {eeprom_write_byte((uint8_t*)0x3FE, OSCCAL_WV);
+eeprom_write_byte((uint8_t*)0x3FF, OSCCAL_WV);
 Serial.write("\n\rDefault value not OK");}
 else
-{eeprom_write_byte((uint8_t*)0x1FE, 0xFF);            //Delete user cal value
-eeprom_write_byte((uint8_t*)0x1FF, 0xFF);}
+{eeprom_write_byte((uint8_t*)0x3FE, 0xFF);            //Delete user cal value
+eeprom_write_byte((uint8_t*)0x3FF, 0xFF);}
 SW_reset;}
 
 
@@ -134,19 +134,19 @@ if ((error = compute_single_error(New_UC_value)) > 1000)
 Int_Num_to_PC_A(error, Num_string, ' ');
 Serial.write("  Error too great!"); 
 newline_A();
-eeprom_write_byte((uint8_t*)0x1FE, OSCCAL_WV);         //Delete user cal value
-eeprom_write_byte((uint8_t*)0x1FF, OSCCAL_WV);
+eeprom_write_byte((uint8_t*)0x3FE, OSCCAL_WV);         //Delete user cal value
+eeprom_write_byte((uint8_t*)0x3FF, OSCCAL_WV);
 SW_reset;}                                            //Abort and automatically repeat calibration process
 
 
 /*********Safeguard: Cal value entered at KBD is OK*********************/
-eeprom_write_byte((uint8_t*)0x1FE, New_UC_value);     //Save new user cal value to EEPROM addresses 0x1F7 and 8
-eeprom_write_byte((uint8_t*)0x1FF, New_UC_value);
+eeprom_write_byte((uint8_t*)0x3FE, New_UC_value);     //Save new user cal value to EEPROM addresses 0x1F7 and 8
+eeprom_write_byte((uint8_t*)0x3FF, New_UC_value);
 
 Serial.write("\r\nValues saved to EEPROM   \t");      //Echo values back from the EEPROM
-Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x1FE), Num_string, ' ');
+Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x3FE), Num_string, ' ');
 Serial.write ("    ");
-Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x1FF), Num_string, '\r');
+Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x3FF), Num_string, '\r');
 Serial.write("\r\nAK to repeat\r\n");
 waitforkeypress_A();SW_reset;}                        //keypress to repeat cal process
 
