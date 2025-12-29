@@ -67,6 +67,9 @@ waiting_for_I2C_master;
 if (receive_byte_with_Nack()==1)
 {TWCR = (1 << TWINT);
 
+Serial.write("\r\nTo adgust display brighness press\
+ any 2 user switches and press 4 at the KBD\r\n");
+
 while(1){
 
 Serial.write("\r\n");
@@ -76,7 +79,7 @@ I2C_Rx_get_version_A('1');
 
 Serial.write("\r\nPress\r\n\
 3 Message from the OS (x to escape)\r\n\
-4 Default project\r\n\
+4 Display brightness\r\n\
 0 to escape\r\n");
 switch (waitforkeypress_A()){
 case '0':break;
