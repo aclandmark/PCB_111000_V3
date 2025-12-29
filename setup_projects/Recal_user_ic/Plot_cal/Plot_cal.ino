@@ -15,8 +15,8 @@ int main (void){
 
 long error;
 
-setup_HW_Arduino_IO;                                   //"setup_HW"initially saves default OSCCAL in 0x1FD and
-OSCCAL_DV = eeprom_read_byte((uint8_t*)0x1FD);          //then checks for "user-cal" and copies it to OSCCAL if present
+setup_HW_Arduino_IO;                                   //"setup_HW"initially saves default OSCCAL in 0x3FD and
+OSCCAL_DV = eeprom_read_byte((uint8_t*)0x3FD);          //then checks for "user-cal" and copies it to OSCCAL if present
 OSCCAL_WV = OSCCAL;                                     //Save actual cal value: could be "user-cal" or the default OSCCAL
 
 Serial.write("Cal factor working value   \t");          //Print the actual (working) value of OSCCAL
