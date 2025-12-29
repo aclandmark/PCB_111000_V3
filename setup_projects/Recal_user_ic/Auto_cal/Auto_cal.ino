@@ -85,16 +85,16 @@ if(waitforkeypress_A() == 'y'){
 New_UC_value = OSCCAL;
 
 
-eeprom_write_byte((uint8_t*)0x1FE, New_UC_value);                     //Save new user cal value to EEPROM addresses 0x1F7 and 8
+eeprom_write_byte((uint8_t*)0x3FE, New_UC_value);                     //Save new user cal value to EEPROM addresses 0x1F7 and 8
 Timer_T0_sub(T0_delay_10ms);
-eeprom_write_byte((uint8_t*)0x1FF, New_UC_value);
+eeprom_write_byte((uint8_t*)0x3FF, New_UC_value);
 Timer_T0_sub(T0_delay_10ms);
 
     
 Serial.write("Values saved to EEPROM   ");                              //Echo values back from the EEPROM
-Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x1FE), Num_string, ' ');
+Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x3FE), Num_string, ' ');
 Serial.write ("    ");
-Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x1FF), Num_string, ' ');
+Hex_to_PC_A(eeprom_read_byte((uint8_t*)0x3FF), Num_string, ' ');
 newline_A();}
 else Serial.write("Not saved\r\n");
 
