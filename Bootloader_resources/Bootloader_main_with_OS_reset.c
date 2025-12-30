@@ -90,7 +90,7 @@ int main (void){
 					if (dummy_byte == 'x') {eeprom_write_byte((uint8_t*)0x3FC, 0x1);}
 
 				sendString ("Sw!\r\n");wdt_enable(WDTO_60MS); while(1);}}
-				sendString ("\r\nSend file (ATMEGA328:\r\n");
+				sendString ("\r\nSend file ATMEGA328:\r\n");
 				Start_LED_Activity;
 
 				PageSZ = 0x40; PAmask = 0x3FC0; FlashSZ=0x4000;						//Valuers for Atmega 328
@@ -210,6 +210,7 @@ int main (void){
 					int   star_counter;
 					signed int phys_address;
 					char offset=0;
+					char dot_counter = 0;
 					read_ops = 0;
 					Hex_cmd = 0;
 					star_counter = 0;
@@ -220,10 +221,11 @@ int main (void){
 						phys_address++;
 						star_counter++;
 						if (phys_address == FlashSZ)break;
+						if (dot_counter >= 10)break;
 						if (Hex_cmd != 0xFFFF){
-						read_ops++; if(read_ops >= prog_counter) offset = 4;}
+						read_ops++; if(read_ops >= prog_counter) offset = 4; dot_counter = 1;}
 
-						if (!( star_counter - 200)){sendChar('*' + offset);star_counter = 0;}}}
+						if (!( star_counter - 200)){sendChar('*' + offset);star_counter = 0; if(dot_counter)dot_counter += 1;}}}
 
 
 						void timer_T0_sub(char Counter_speed, unsigned char Start_point){
