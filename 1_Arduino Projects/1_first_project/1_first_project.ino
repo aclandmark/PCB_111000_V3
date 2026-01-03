@@ -23,12 +23,3 @@ int main (void)       //Example 1
    while(switch_1_down);
    }
   SW_reset; }
-
-
-
-
-
-ISR (WDT_vect){
-Reset_Atmega328;
-Reset_I2C;}
-  
