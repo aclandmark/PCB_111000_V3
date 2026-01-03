@@ -4,7 +4,8 @@
 
 char watch_dog_reset = 0;
 char str_counter;
-unsigned char SREG_BKP;					//Extra for mini-IO reset
+
+
 
 #define switch_1_down  ((PIND & 0x04)^0x04)
 #define switch_2_down  ((PINB & 0x40)^0x40)
@@ -116,54 +117,13 @@ TWCR = (1 << TWINT);
 
 
 /********Original code now replaced with special code in both cases*************/
-#define waiting_for_I2C_master_original \
+#define waiting_for_I2C_master \
 TWCR = (1 << TWEA) | (1 << TWEN);\
 while (!(TWCR & (1 << TWINT)));\
 TWDR;
 
 
-
-/********************Special code for mini-OS reset**************************/
-#define waiting_for_I2C_master \
-TWCR = (1 << TWEA) | (1 << TWEN);\
-{int m = 0; while((!(TWCR & (1 << TWINT))) && (m++ < 5000))wdr();\
-    if (m >= 4999){sei(); while((!(TWCR & (1 << TWINT))));}}\
-TWDR;
-
-
-
-/********************Extra code for mini-OS reset**************************/
-#define Thirty_two_ms_WDT_with_interrupt \
-wdr();\
-SREG_BKP = SREG;\
-cli();\
-WDTCSR |= (1 <<WDCE) | (1<< WDE);\
-WDTCSR = (1<< WDE) | (1 << WDIE) | (1 << WDP0);\
-MCUSR=0;\
-SREG = SREG_BKP;
-
-
-#define Reset_Atmega328 \
-PORTC |= (1 << PC3);\
-DDRC |= (1 << PC3);\
-_delay_ms(1);\
-PORTC &= (~((1 << PC3)));\
-_delay_ms(1);\
-PORTC |= (1 << PC3);
-
-
-#define Reset_I2C \
-DDRB |= (1 << DDB4);\
-PORTB &= (~(1 << PORTB4));
-
-/*****Include this line afer setup_HW plus ISR if mini-OS reset required***************/
-//Thirty_two_ms_WDT_with_interrupt;
-
-//ISR (WDT_vect){
-//Reset_Atmega328;		//may need some development
-//Reset_I2C;}
   
-
 /*****************************************************************************/
 #include "Resources_nano_projects/Subroutines/HW_timers.c"
 #include "Resources_nano_projects/PC_comms/Basic_Rx_Tx_Basic.c"
