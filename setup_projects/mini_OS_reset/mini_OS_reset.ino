@@ -76,11 +76,7 @@ send_byte_with_Nack(0);
 
 
 ISR(PCINT0_vect)
-{ if(switch_2_down)SW_reset;
-}
-
-
-
+{ if(switch_2_down)SW_reset;}
 
 
 
@@ -102,21 +98,5 @@ _delay_ms(1);
 PORTC |= (1 << PC3);
 while(1);}
 
-/*
-ISR (WDT_vect){ 
-if(PORT_1 == 0x8000)PORT_1 = 1;
- eeprom_write_byte((uint8_t*)(0x10),PORT_1); 
- eeprom_write_byte((uint8_t*)(0x11),PORT_1 >> 8); 
- eeprom_write_byte((uint8_t*)(0x12),char_offset);
 
-DDRB |= (1 << DDB4);
-PORTB &= (~(1 << PORTB4));      //MISO output / input
-PORTC |= (1 << PC3);            //Mini-OS reset control
-DDRC |= (1 << PC3);
-_delay_ms(1);
-PORTC &= (~((1 << PC3)));
-_delay_ms(1);
-PORTC |= (1 << PC3);
-while(1);}
-*/
   
