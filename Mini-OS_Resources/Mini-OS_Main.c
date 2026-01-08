@@ -114,6 +114,8 @@ MUX_cntl = 0;													//Only used in multiplexer demo project
 
 					case 6: 	I2C_Tx_long; break;						//Displays 8 digit number
 
+					case 7:		cli(); while(1); break;					//Included to test full reset mode (user proj + mini-OS)
+					
 					case 'C':	basic_clock(); break;					//I2C_Tx_OS_timer(AT_clock_mode, start_time): Starts the timer/clock
 
 					case 'D':	multi_mode_clock(); break;				//Used with subroutine I2C_Tx_Clock_command(char timer_mode, char command): Controls the timer/clock
