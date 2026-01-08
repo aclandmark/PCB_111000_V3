@@ -76,8 +76,8 @@ void I2C_Tx_display(void){
 int PRN = 0;
 unsigned char PRN_counter = 0;
 
-if ((!(eeprom_read_byte((uint8_t*)0x1FC))) && (!(eeprom_read_byte((uint8_t*)0x1FB))))
-eeprom_write_byte((uint8_t*)(0x1FC), 0xFF);
+if ((!(eeprom_read_byte((uint8_t*)0x3FC))) && (!(eeprom_read_byte((uint8_t*)0x3FB))))
+eeprom_write_byte((uint8_t*)(0x3FC), 0xFF);
 
 
 while(1){
