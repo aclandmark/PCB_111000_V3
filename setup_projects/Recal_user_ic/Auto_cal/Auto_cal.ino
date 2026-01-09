@@ -29,7 +29,7 @@ char Num_string[12];
 int main (void){
 long error;
 
-setup_HW_Arduino_IO;                                                  //"setup_HW" initially saves default OSCCAL in 0x1FD and
+setup_HW_Arduino_IO;                                                  //"setup_HW" initially saves default OSCCAL in 0x3FD and
 
 TIMSK1 |= (1 << TOIE1);                                               //Enable T1 interrupt
 I2C_initiate_7_8125mS_ref();                                           //Request Mode P: 7.8125mS ref signal from master
