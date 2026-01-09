@@ -149,7 +149,7 @@ if ((next_char != '\r') && (next_char != '\n'))						//Ignore leading carriage r
 break;}							
 Text_to_EEPROM(&EEP_write_address, next_char);							//save first letter to EEPROM
 
-while(EEP_write_address < 0x1FA) 										//Exits before cal bytes can be overwritten
+while(EEP_write_address < 0x3F8) 										//Exits before cal bytes can be overwritten
 	{if(isCharavailable(6)) 											//returns 1 if a new letter is available (0 at the end of the file) 
 	{text = receiveChar(); 												//Temporary storage
 
@@ -166,7 +166,7 @@ while(EEP_write_address < 0x1FA) 										//Exits before cal bytes can be overw
 
 	}else break; }														//End of file reached
 
-if(EEP_write_address == 0x1FA)											//If text file was too long
+if(EEP_write_address == 0x3F7)											//If text file was too long
 {Text_to_EEPROM(&EEP_write_address, '\0');								//Place '\0' in 0x1F6 to terminate the string
 binUnwantedChars_dot();}												//Send dots to pc to indicate lost characters
 
