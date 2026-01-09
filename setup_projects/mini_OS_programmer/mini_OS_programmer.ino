@@ -218,7 +218,7 @@ sendString(" Done\r\n");}wdt_enable(WDTO_60MS); while(1);break;
 case 'd': 
 sendString("\r\nOn-chip "); Text_EEP_reset;
 if(waitforkeypress() == 'D'){
-for (int m = 0; m <= 0x1FA;m++)                               //Delete on-chip EEPROM
+for (int m = 0; m <= 0x3F8;m++)                               //Delete on-chip EEPROM
 eeprom_write_byte((uint8_t*)(m),0xFF); 
 sendString(" Done\r\n");}wdt_enable(WDTO_60MS); while(1);break;
 
