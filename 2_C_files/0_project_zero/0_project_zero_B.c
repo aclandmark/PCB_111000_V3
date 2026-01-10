@@ -19,11 +19,11 @@ int main (void)  	//Example 5
   PRN = (PRN_8bit_GEN() % 50);
   Timer_T0_10mS_delay_x_m(PRN);
 
-if (eeprom_read_byte((uint8_t*)(0x1FA))%2)
+if (eeprom_read_byte((uint8_t*)(0x3FC))%2)
 {LED_1_on;}
 else {LED_2_on;}
 
-eeprom_write_byte((uint8_t*)(0x1FA), 
-(eeprom_read_byte((uint8_t*)(0x1FA))+1));
+eeprom_write_byte((uint8_t*)(0x3FC), 
+(eeprom_read_byte((uint8_t*)(0x3FC))+1));
 SW_reset;}
   
