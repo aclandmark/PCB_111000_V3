@@ -32,7 +32,7 @@
 
 setup_HW_Basic;
 _delay_ms(100);
-next_LED = eeprom_read_byte((uint8_t*)(0x3FC))%3;
+next_LED = eeprom_read_byte((uint8_t*)(0x3F8))%3;
 
 switch(next_LED){
 case 0:LED_1_on;break;
@@ -43,7 +43,7 @@ if (switch_1_down)next_LED = 1;
 if (switch_2_down)next_LED = 2;
 if (switch_3_down)next_LED = 3;
 
-eeprom_write_byte((uint8_t*)(0x3FC), next_LED);
+eeprom_write_byte((uint8_t*)(0x3F8), next_LED);
  _delay_ms(40);
 SW_reset;}
   
