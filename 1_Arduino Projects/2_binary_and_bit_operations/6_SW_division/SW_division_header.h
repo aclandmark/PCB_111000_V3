@@ -29,7 +29,7 @@ ADMUX |= (1 << REFS0);\
 set_up_switched_inputs;\
 Set_LED_ports;\
 Unused_I_O;\
-eeprom_write_byte((uint8_t*)(0x1FD),OSCCAL);\
+eeprom_write_byte((uint8_t*)(0x3FD),OSCCAL);\
 while (!(PIND & (1 << PD1)));\
 Timer_T0_10mS_delay_x_m(5);\
 OSC_CAL;\
@@ -108,9 +108,9 @@ else {PORTB |= (1 << PB1);}
 
 /*****************************************************************************/
 #define OSC_CAL \
-if ((eeprom_read_byte((uint8_t*)0x1FE) > 0x0F)\
-&&  (eeprom_read_byte((uint8_t*)0x1FE) < 0xF0) && (eeprom_read_byte((uint8_t*)0x1FE)\
-== eeprom_read_byte((uint8_t*)0x1FF))) {OSCCAL = eeprom_read_byte((uint8_t*)0x1FE);}
+if ((eeprom_read_byte((uint8_t*)0x3FE) > 0x0F)\
+&&  (eeprom_read_byte((uint8_t*)0x3FE) < 0xF0) && (eeprom_read_byte((uint8_t*)0x3FE)\
+== eeprom_read_byte((uint8_t*)0x3FF))) {OSCCAL = eeprom_read_byte((uint8_t*)0x3FE);}
 
 
 
