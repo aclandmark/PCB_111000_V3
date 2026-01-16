@@ -1,6 +1,8 @@
 
 /*
  Drives the display while downloading and printing out a file
+Causeed Bray terminal running on ASUS to go unstable
+ 
  */
 
 
