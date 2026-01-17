@@ -1,7 +1,8 @@
 
 /*
  Drives the display while downloading and printing out a file
-Causeed Bray terminal running on ASUS to go unstable
+May need to insert delay between adjacent bytes  (click in box next to send file button)
+to keep Bray++ stable
  
  */
 
